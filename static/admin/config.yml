@@ -22,16 +22,29 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Author", name: "author", widget: "relation", collection: "author", searchFields: ["name"], valueField: "Name", required: false}
+      - {label: "Categories", name: "categories", widget: "relation", collection: "category", searchFields: ["title"], valueField: "Title", multiple: true}
+      
+  - name: "category"
+    label: "Category"
+    folder: "src/pages/category"
+    create: true
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "category-page"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Thumbnail", name: "thumbnail", widget: image, required: false}
       
   - name: "author"
     label: "Author"
     folder: "src/pages/author"
     create: true
+    identifier_field: "name"
     slug: "{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "author-page"}
       - {label: "Name", name: "name", widget: "string"}
-      - {label: "Bio", name: "bio", widget: "markdown"}
+      - {label: "Bio", name: "body", widget: "markdown"}
       - {label: "Avatar", name: "avatar", widget: image}
 
   - name: "pages"
